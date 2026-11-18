@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wedding Invitation · 27 &amp; 28 February 2027</title>
+<meta name="theme-color" content="#FBF3E1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+<div id="petals" aria-hidden="true"></div>
+<audio id="music" src="song.mp3" loop preload="none"></audio>
+
+<!-- STEP 1: Envelope with logo -->
+<div id="intro" class="intro">
+  <p class="intro-top">A Celebration of Love</p>
+  <div class="env-wrap">
+  <button id="envelope" class="env" type="button" aria-label="Open your wedding invitation">
+    <span class="card"><i class="cl-glow"></i><i class="cl-beams"></i><i class="cl-panel"></i><i class="cl-sparks" id="cardSparks"></i></span>
+    <span class="pocket"></span>
+    <span class="flap"></span>
+    <span class="seal"><img src="logo.jpeg" alt="Wedding monogram N and S"></span>
+  </button>
+  </div>
+  <p class="intro-hint">Tap to Open Your Invitation</p>
+</div>
+
+<!-- STEP 2: "You are invited" page -->
+<section id="invited" class="invited" hidden aria-label="You are invited">
+  <div class="inv-frame">
+    <img class="inv-logo" src="logo.jpeg" alt="">
+    <p class="inv-script script"><span>You are invited</span></p>
+    <p class="inv-sub">To celebrate our wedding</p>
+  </div>
+  <button id="invitedSkip" class="skip" type="button">Skip &rsaquo;</button>
+</section>
+
+<!-- STEP 3: Starting video with names and date -->
+<section id="film" class="film" hidden aria-label="Wedding opening video">
+  <video id="introVideo" class="film-video" muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="starting_video.mp4" type="video/mp4">
+  </video>
+  <div class="film-shade" aria-hidden="true"></div>
+  <button id="filmSkip" class="skip skip-light" type="button">Skip &rsaquo;</button>
+  <div class="f-names">
+    <p class="f-of">The Wedding of</p>
+    <h2 class="f-title"><span data-bride></span> &amp; <span data-groom></span></h2>
+    <p class="f-date">27 &amp; 28 February 2027</p>
+  </div>
+  <button id="filmEnter" class="f-enter" type="button">Open Invitation</button>
+</section>
+
+<!-- Navigation -->
+<header id="nav" class="nav">
+  <a class="brand" href="#invite" aria-label="Top"><img src="logo.jpeg" alt="N &amp; S"></a>
+  <button id="menuBtn" class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span><span></span><span></span></button>
+  <nav id="menu" class="menu" aria-label="Main">
+    <a href="#invite">Invitation</a><a href="#save-date">Save the Date</a><a href="#countdown" id="navCd" hidden>Countdown</a>
+    <a href="#functions">Functions</a><a href="#family">Family</a><a href="#venue">Venue</a>
+  </nav>
+</header>
+
+<div class="sound">
+  <button id="musicBtn" type="button" aria-pressed="false" aria-label="Play background music" title="Music">♪</button>
+</div>
+
+<main id="main">
+
+<!-- STEP 4: Grandparents (dada / dadi) section -->
+<section id="invite" class="panel center invite">
+  <img class="mono reveal" src="logo.jpeg" alt="N &amp; S monogram">
+  <p class="reveal">With a prayer in our hearts,<br>God’s grace above us,<br>and the blessings of our beloved grandparents,</p>
+  <p class="nm script reveal" data-grand></p>
+  <p class="reveal">we begin a beautiful new chapter.<br>With immense joy and happiness,<br>we invite you to be a part of the wedding celebrations of</p>
+  <p class="nm script big reveal" data-bride></p>
+  <p class="par reveal" data-bparents></p>
+  <p class="weds reveal">weds</p>
+  <p class="nm script big reveal" data-groom></p>
+  <p class="par reveal" data-gparents></p>
+  <p class="reveal">As they step gracefully into a new chapter of life, we invite you to share in the joy of their union and celebrate the timeless bonds of love, family, tradition, and togetherness.</p>
+</section>
+
+<section id="save-date" class="panel center">
+  <h2>Scratch to Reveal Our Special Dates</h2>
+  <p class="muted">A little surprise awaits you. Scratch to discover our special days!</p>
+  <div class="scratch-card gold-card">
+    <div class="under"><small>Save the Date</small><strong class="script">27th &amp; 28th February 2027</strong><p>A lifetime of memories.</p></div>
+    <canvas class="cover" data-style="gold" aria-label="Scratch area. Drag to reveal the wedding dates."></canvas>
+  </div>
+  <button class="ghost reset" type="button" data-reset hidden>Scratch again</button>
+</section>
+
+<section id="countdown" class="panel center" hidden>
+  <h2>The Countdown to Forever Begins</h2>
+  <div id="timer" class="timer" role="timer" aria-live="off">
+    <div class="tbox"><b id="cd-d">00</b><span>Days</span></div>
+    <div class="tbox"><b id="cd-h">00</b><span>Hours</span></div>
+    <div class="tbox"><b id="cd-m">00</b><span>Minutes</span></div>
+    <div class="tbox"><b id="cd-s">00</b><span>Seconds</span></div>
+  </div>
+  <p id="cd-done" class="script done-msg" hidden>Today, we begin forever. Thank you for being here!</p>
+</section>
+
+<section id="functions" class="panel">
+  <h2 class="center">Wedding Functions</h2>
+  <div id="eventList" class="events"></div>
+</section>
+
+<section id="message" class="panel center">
+  <h2>A Little Message From Us</h2>
+  <p class="muted">Scratch to reveal a little something special!</p>
+  <div class="scratch-card sage-card">
+    <div class="under"><p class="msg">Your presence will make our special day even more beautiful. We can’t wait to celebrate this new chapter of our lives with you!</p></div>
+    <canvas class="cover" data-style="sage" aria-label="Scratch area. Drag to reveal our message."></canvas>
+  </div>
+  <button class="ghost reset" type="button" data-reset hidden>Scratch again</button>
+</section>
+
+<section id="family" class="panel center">
+  <p class="lead2 reveal">With hearts filled with love, gratitude &amp; joy.</p>
+  <h2 id="famTitle" class="reveal"></h2>
+  <p class="tagline reveal">Two Hearts • Two Families • One Beautiful Beginning</p>
+  <p class="muted reveal">A celebration of love, family &amp; togetherness.</p>
+  <div class="fam reveal"><h3 class="long">We humbly seek your gracious presence and heartfelt blessings.</h3><h3>With warmth &amp; affection</h3><ul id="seekList"></ul></div>
+  <div class="fam reveal"><ul id="warmList"></ul></div>
+</section>
+
+<section id="venue" class="panel">
+  <h2 class="center">Venue &amp; Directions</h2>
+  <div id="venueList" class="venues"></div>
+</section>
+
+<footer class="foot"><img src="logo.jpeg" alt=""><span class="script" data-couple></span><br>27 &amp; 28 February 2027</footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
