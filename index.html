@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Wedding Invitation · 27 &amp; 28 February 2027</title>
+<title>#ShreeKiNidhi - Wedding Invitation · 27 &amp; 28 February 2027</title>
 <meta name="theme-color" content="#FBF3E1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +11,14 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="locked">
+
+<!-- Hanger icon, defined once and reused in the Dress Code section -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="hanger" viewBox="0 -1 60 33">
+    <path d="M30 16V12C30 8 36 8 36 5A5 5 0 0 0 26 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M30 16 3 29Q1 31 4 31H56Q59 31 57 29Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+  </symbol>
+</svg>
 
 <div id="petals" aria-hidden="true"></div>
 <audio id="music" src="song.mp3" loop preload="none"></audio>
@@ -48,7 +56,7 @@
   <button id="filmSkip" class="skip skip-light" type="button">Skip &rsaquo;</button>
   <div class="f-names">
     <p class="f-of">The Wedding of</p>
-    <h2 class="f-title"><span data-bride></span> &amp; <span data-groom></span></h2>
+    <h2 class="f-title"><span>Nidhi</span> &amp; <span>Shreeyash</span></h2>
     <p class="f-date"><!--27 &amp; 28 February 2027--></p>
   </div>
   <button id="filmEnter" class="f-enter" type="button">Open Invitation</button>
@@ -70,20 +78,21 @@
 
 <main id="main">
 
-<!-- STEP 4: Grandparents (dada / dadi) section -->
+<!-- STEP 4: Invitation text (grandparents, bride, groom) -->
 <section id="invite" class="panel center invite">
   <img class="mono reveal" src="logo.jpeg" alt="N &amp; S monogram">
   <p class="reveal">With a prayer in our hearts,<br>God’s grace above us,<br>and the blessings of our beloved grandparents,</p>
-  <p class="nm script reveal" data-grand></p>
+  <p class="nm script reveal">Lt. Smt. Kamla &amp; Lt. Shri I.B. Khare</p>
   <p class="reveal">we begin a beautiful new chapter.<br>With immense joy and happiness,<br>we invite you to be a part of the wedding celebrations of</p>
-  <p class="nm script big reveal" data-bride></p>
-  <p class="par reveal" data-bparents></p>
+  <p class="nm script big reveal">Nidhi</p>
+  <p class="par reveal">Daughter of Smt. Archana &amp; Lt. Shri Yogesh Khare</p>
   <p class="weds reveal">weds</p>
-  <p class="nm script big reveal" data-groom></p>
-  <p class="par reveal" data-gparents></p>
+  <p class="nm script big reveal">Shreeyash</p>
+  <p class="par reveal">Son of Smt. Pallavi &amp; Shri Sanjay Nage</p>
   <p class="reveal">As they step gracefully into a new chapter of life, we invite you to share in the joy of their union and celebrate the timeless bonds of love, family, tradition, and togetherness.</p>
 </section>
 
+<!-- Save the date (scratch card + countdown) -->
 <section id="save-date" class="panel center">
   <h2>Scratch to Reveal Our Special Dates</h2>
   <p class="muted">A little surprise awaits you. Scratch to discover our special days!</p>
@@ -93,32 +102,110 @@
   </div>
 
   <div id="countdown" class="cd-wrap" hidden>
-  <h3 class="cd-title">The Countdown to Forever Begins</h3>
-  <div id="timer" class="timer" role="timer" aria-live="off">
-    <div class="tbox"><b id="cd-d">00</b><span>Days</span></div>
-    <div class="tbox"><b id="cd-h">00</b><span>Hours</span></div>
-    <div class="tbox"><b id="cd-m">00</b><span>Minutes</span></div>
-    <div class="tbox"><b id="cd-s">00</b><span>Seconds</span></div>
-  </div>
-  <p id="cd-done" class="script done-msg" hidden>Today, we begin forever. Thank you for being here!</p>
+    <h3 class="cd-title">The Countdown to Forever Begins</h3>
+    <!-- Change the countdown target date/time here -->
+    <div id="timer" class="timer" role="timer" aria-live="off" data-target="2027-02-28T11:30:00+05:30">
+      <div class="tbox"><b id="cd-d">00</b><span>Days</span></div>
+      <div class="tbox"><b id="cd-h">00</b><span>Hours</span></div>
+      <div class="tbox"><b id="cd-m">00</b><span>Minutes</span></div>
+      <div class="tbox"><b id="cd-s">00</b><span>Seconds</span></div>
+    </div>
+    <p id="cd-done" class="script done-msg" hidden>Today, we begin forever. Thank you for being here!</p>
   </div>
 </section>
 
+<!-- Wedding functions: edit / copy an <article> to add or change an event -->
 <section id="functions" class="panel">
   <h2 class="center">Wedding Functions</h2>
-  <div id="eventList" class="events"></div>
+  <div id="eventList" class="events">
+
+    <h3 class="day reveal">Day 1 · 27 Feb 2027 <br>(Saturday)</h3>
+
+    <article class="ev haldi reveal">
+      <span class="ic"><img src="haldi_im.png" alt="Haldi invitation illustration" loading="lazy"></span>
+      <div class="cap">
+        <p class="tg">The Golden Hour</p>
+        <p class="when"><b>Saturday, 27 February 2027</b><br>11:30 AM onwards</p>
+      </div>
+    </article>
+
+    <article class="ev sangeet reveal">
+      <span class="ic"><img src="sangeet_im.jpeg" alt="Sangeet invitation illustration" loading="lazy"></span>
+      <div class="cap">
+        <p class="tg">The Rhythm Soirée</p>
+        <p class="when"><b>Saturday, 27 February 2027</b><br>7:00 PM onwards</p>
+      </div>
+    </article>
+
+    <h3 class="day reveal">Day 2 · 28 Feb 2027 <br>(Sunday)</h3>
+
+    <article class="ev phere reveal">
+      <span class="ic"><img src="phere_im.png" alt="Phere invitation illustration" loading="lazy"></span>
+      <div class="cap">
+        <p class="tg">The Forever Chapter</p>
+        <p class="when"><b>Sunday, 28 February 2027</b><br>9:00 AM onwards</p>
+      </div>
+    </article>
+
+    <article class="ev mangal reveal">
+      <span class="ic"><img src="mangalashtak_im.jpeg" alt="Mangalashtak invitation illustration" loading="lazy"></span>
+      <div class="cap">
+        <p class="tg">The Floral Promise</p>
+        <p class="when"><b>Sunday, 28 February 2027</b><br>11:30 AM</p>
+      </div>
+    </article>
+
+  </div>
 </section>
 
+<!-- Venue -->
 <section id="venue" class="panel center">
   <h2>Venue &amp; Directions</h2>
-  <div id="venueList" class="venues"></div>
+  <div id="venueList" class="venues">
+    <article class="v">
+      <h3>Pushp Vatika Resort &amp; Lawns</h3>
+      <p>Panvel, Navi Mumbai</p>
+      <a class="dir" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/search/?api=1&query=Pushp%20Vatika%20Resort%20%26%20Lawns%2C%20Panvel%2C%20Navi%20Mumbai">Get Directions</a>
+    </article>
+  </div>
 </section>
 
+<!-- Dress code: one .hg (hanger) per event -->
 <section id="dresscode" class="panel center">
   <h2>The Wardrobe · Dress Code</h2>
-  <div id="wardrobeList"></div>
+  <div id="wardrobeList">
+    <div class="wd">
+
+      <div class="shelf reveal" style='text-align: center;'>
+        <span class="shelf-day">Day 1 · 27 Feb 2027 <br>(Saturday)</span>
+        <div class="rail">
+          <div class="hg">
+            <svg class="hk" viewBox="0 -1 60 33" aria-hidden="true"><use href="#hanger"/></svg>
+            <div class="hg-card"><b>Haldi</b><p class="hg-d">Yellow with a Touch of Maharashtrian Tradition</p></div>
+          </div>
+          <div class="hg">
+            <svg class="hk" viewBox="0 -1 60 33" aria-hidden="true"><use href="#hanger"/></svg>
+            <div class="hg-card"><b>Sangeet</b><p class="hg-d">Western Elegance</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shelf reveal" style='text-align: center;'>
+        <span class="shelf-day">Day 2 · 28 Feb 2027 <br>(Sunday)</span>
+        <div class="rail one">
+          <div class="hg">
+            <svg class="hk" viewBox="0 -1 60 33" aria-hidden="true"><use href="#hanger"/></svg>
+            <div class="hg-card"><b>Phere &amp; Mangalashtak</b><p class="hg-d">Traditional Attire</p></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
+<!-- Message (scratch card) -->
 <section id="message" class="panel center">
   <h2>A Little Message From Us</h2>
   <p class="muted">Scratch to reveal a little something special!</p>
@@ -128,16 +215,27 @@
   </div>
 </section>
 
+<!-- Family -->
 <section id="family" class="panel center">
   <p class="lead2 reveal">With hearts filled with love, gratitude &amp; joy.</p>
-  <h2 id="famTitle" class="reveal"></h2>
+  <h2 id="famTitle" class="reveal">The Khare Family invites you to celebrate</h2>
   <p class="tagline reveal">Two Hearts • Two Families • One Beautiful Beginning</p>
   <p class="muted reveal">A celebration of love, family &amp; togetherness.</p>
-  <div class="fam reveal"><h3 class="long">We humbly seek your gracious presence and heartfelt blessings.</h3><h3>With warmth &amp; affection</h3><ul id="seekList"></ul></div>
+  <div class="fam reveal">
+    <h3 class="long">We humbly seek your gracious presence and heartfelt blessings.</h3>
+    <h3>With warmth &amp; affection</h3>
+    <ul id="seekList">
+      <li>Mrs. Archana Khare</li>
+      <li>Mr. Yash Khare &amp; Mrs. Tulika Shrivastava</li>
+      <li>Mr. Rakesh &amp; Mrs. Rita Khare</li>
+      <li>Mr. Akhilesh &amp; Mrs. Neeta Khare</li>
+      <li>Mr. Apoorv Khare</li>
+    </ul>
+  </div>
   <div class="fam reveal"><ul id="warmList"></ul></div>
 </section>
 
-<footer class="foot"><img src="logo.jpeg" alt=""><span class="script" data-couple></span><br>27 &amp; 28 February 2027</footer>
+<footer class="foot"><img src="logo.jpeg" alt=""><span class="script">Nidhi &amp; Shreeyash</span><br>27 &amp; 28 February 2027</footer>
 </main>
 
 <script src="script.js"></script>
