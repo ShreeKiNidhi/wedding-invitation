@@ -12,9 +12,9 @@ const CONFIG = {
   // img = poster image shown on the card (the title is already printed on each poster)
   // Dress code wardrobe: one hanger per card (edit freely)
   wardrobe: [
-    { day: 1, name: "Haldi",                 times: ["11:30 AM onwards"],                      dress: "Dress Code: Yellow with a Touch of Maharashtrian Tradition" },
-    { day: 1, name: "Sangeet",               times: ["7:00 PM onwards"],                       dress: "Dress Code: Western Elegance" },
-    { day: 2, name: "Phere & Mangalashtak",  times: ["Phere · 9:00 AM onwards","Mangalashtak · 11:30 AM"], dress: "Dress Code: Traditional Attire" }
+    { day: 1, name: "Haldi", dress: "Yellow with a Touch of Maharashtrian Tradition" },
+    { day: 1, name: "Sangeet", dress: "Western Elegance" },
+    { day: 2, name: "Phere & Mangalashtak",  dress: "Traditional Attire" }
   ],
   events: [
     { day: 1, cls: "haldi",   name: "Haldi",        img: "haldi_im.png",         tag: "The Golden Hour",     date: "Saturday, 27 February 2027", time: "11:30 AM onwards" },
@@ -69,7 +69,7 @@ const CONFIG = {
       for (let i = 0; i < 70; i++) { const d = document.createElement("i"); d.className = "rs"; d.style.cssText = `left:${Math.random() * 100}%;top:${45 + Math.random() * 55}%;--d:${1.6 + Math.random() * 2}s;--dl:${.3 + Math.random() * 2.6}s;--h:${80 + Math.random() * 160}px;width:${2 + Math.random() * 5}px;height:${2 + Math.random() * 5}px`; sp.appendChild(d); }
       for (let i = 0; i < 12; i++) { const d = document.createElement("i"); d.className = "bk"; const z = 18 + Math.random() * 34; d.style.cssText = `left:${Math.random() * 100}%;top:${40 + Math.random() * 50}%;--d:${4 + Math.random() * 3}s;--dl:${Math.random() * 3}s;--h:${120 + Math.random() * 140}px;width:${z}px;height:${z}px`; sp.appendChild(d); }
     }
-    setTimeout(() => { intro.classList.add("done"); startInvited(); setTimeout(() => { intro.hidden = true; }, 1100); }, reduce ? 300 : 0);
+    setTimeout(() => { intro.classList.add("done"); startInvited(); setTimeout(() => { intro.hidden = true; }, 1100); }, reduce ? 300 : 200);
   });
 
   function startInvited() {
@@ -137,7 +137,7 @@ const CONFIG = {
     ctx.fillText(style === "gold" ? "✦ Scratch here ✦" : "Scratch to reveal", w / 2, h / 2 + w / 45);
   }
   $$(".scratch-card").forEach(card => {
-    const cv = $(".cover", card), ctx = cv.getContext("2d", { willReadFrequently: true }), reset = $("[data-reset]", card.parentElement);
+    const cv = $(".cover", card), ctx = cv.getContext("2d", { willReadFrequently: true });
     let w, h, drawing = false, last = null, started = false, done = false, lastCheck = 0;
     const size = () => { const r = cv.getBoundingClientRect(), d = devicePixelRatio || 1; w = cv.width = Math.round(r.width * d); h = cv.height = Math.round(r.height * d); paint(ctx, w, h, cv.dataset.style); };
     new ResizeObserver(() => { if (!started && !done && cv.clientWidth) size(); }).observe(cv);
@@ -154,12 +154,11 @@ const CONFIG = {
       for (let i = 3; i < px.length; i += 64) { total++; if (px[i] < 128) clear++; }
       if (clear / total >= .4) finish();
     }
-    function finish() { done = true; drawing = false; cv.classList.add("gone"); confetti(card); if (reset) reset.hidden = false; card.dispatchEvent(new CustomEvent("scratched", { bubbles: true })); }
-    reset && reset.addEventListener("click", () => { done = started = false; cv.classList.remove("gone"); size(); reset.hidden = true; });
+    function finish() { done = true; drawing = false; cv.classList.add("gone"); confetti(card); card.dispatchEvent(new CustomEvent("scratched", { bubbles: true })); }
   });
   $("#save-date").addEventListener("scratched", () => {
     const sec = $("#countdown"); if (!sec.hidden) return;
-    sec.hidden = false; $("#navCd").hidden = false; sec.classList.add("cd-in");
+    sec.hidden = false; sec.classList.add("cd-in");
     setTimeout(() => sec.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }), reduce ? 0 : 900);
   });
 
@@ -168,18 +167,17 @@ const CONFIG = {
   CONFIG.events.forEach(ev => {
     if (ev.day !== day) { day = ev.day; evBox.insertAdjacentHTML("beforeend", `<h3 class="day reveal">Day ${day} · ${ev.date.split(",")[0]}</h3>`); }
     evBox.insertAdjacentHTML("beforeend", `<article class="ev ${ev.cls} reveal"><span class="ic"><img src="${ev.img}" alt="${ev.name} invitation illustration" loading="lazy"></span>
-      <div class="cap"><p class="tg">${ev.tag}</p><p class="when"><b>${ev.date}</b><br>${ev.time}</p><p class="vn">${CONFIG.venue}, Panvel, Navi Mumbai</p></div></article>`);
+      <div class="cap"><p class="tg">${ev.tag}</p><p class="when"><b>${ev.date}</b><br>${ev.time}</p></div></article>`);
   });
   const url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.address);
   const HANGER = '<svg class="hk" viewBox="0 -1 60 33" aria-hidden="true"><path d="M30 16V12C30 8 36 8 36 5A5 5 0 0 0 26 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M30 16 3 29Q1 31 4 31H56Q59 31 57 29Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>';
   const days = [...new Set(CONFIG.wardrobe.map(e => e.day))];
   const dayName = d => CONFIG.events.find(e => e.day === d).date.split(",")[0];
   const shelves = days.map(d => { const es = CONFIG.wardrobe.filter(e => e.day === d);
-    return `<div class="shelf reveal"><span class="shelf-day">Day ${d} · ${dayName(d)}</span><div class="rail${es.length === 1 ? " one" : ""}">${es.map(ev => `<div class="hg">${HANGER}<div class="hg-card"><b>${ev.name}</b>${ev.times.map(t => `<span class="hg-t">${t}</span>`).join("")}<p class="hg-d">${ev.dress}</p></div></div>`).join("")}</div></div>`; }).join("");
+    return `<div class="shelf reveal"><span class="shelf-day">Day ${d} · ${dayName(d)}</span><div class="rail${es.length === 1 ? " one" : ""}">${es.map(ev => `<div class="hg">${HANGER}<div class="hg-card"><b>${ev.name}</b><p class="hg-d">${ev.dress}</p></div></div>`).join("")}</div></div>`; }).join("");
   vBox.innerHTML = `<article class="v"><h3>${CONFIG.venue}</h3><p>Panvel, Navi Mumbai</p>
-    <p class="wd-head">The Wardrobe · Dress Code</p>
-    <div class="wd">${shelves}</div>
     <a class="dir" href="${url}" target="_blank" rel="noopener">Get Directions</a></article>`;
+  $("#wardrobeList").innerHTML = `<div class="wd">${shelves}</div>`;
 
   /* Scroll reveal */
   const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .15 }) : null;

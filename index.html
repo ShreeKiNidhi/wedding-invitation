@@ -49,7 +49,7 @@
   <div class="f-names">
     <p class="f-of">The Wedding of</p>
     <h2 class="f-title"><span data-bride></span> &amp; <span data-groom></span></h2>
-    <p class="f-date">27 &amp; 28 February 2027</p>
+    <p class="f-date"><!--27 &amp; 28 February 2027--></p>
   </div>
   <button id="filmEnter" class="f-enter" type="button">Open Invitation</button>
 </section>
@@ -59,8 +59,8 @@
   <a class="brand" href="#invite" aria-label="Top"><img src="logo.jpeg" alt="N &amp; S"></a>
   <button id="menuBtn" class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span><span></span><span></span></button>
   <nav id="menu" class="menu" aria-label="Main">
-    <a href="#invite">Invitation</a><a href="#save-date">Save the Date</a><a href="#countdown" id="navCd" hidden>Countdown</a>
-    <a href="#functions">Functions</a><a href="#family">Family</a><a href="#venue">Venue</a>
+    <a href="#invite">Invitation</a><a href="#save-date">Save the Date</a>
+    <a href="#functions">Functions</a><a href="#venue">Venue</a><a href="#dresscode">Dress Code</a><a href="#family">Family</a>
   </nav>
 </header>
 
@@ -91,11 +91,9 @@
     <div class="under"><small>Save the Date</small><strong class="script">27th &amp; 28th February 2027</strong><p>A lifetime of memories.</p></div>
     <canvas class="cover" data-style="gold" aria-label="Scratch area. Drag to reveal the wedding dates."></canvas>
   </div>
-  <button class="ghost reset" type="button" data-reset hidden>Scratch again</button>
-</section>
 
-<section id="countdown" class="panel center" hidden>
-  <h2>The Countdown to Forever Begins</h2>
+  <div id="countdown" class="cd-wrap" hidden>
+  <h3 class="cd-title">The Countdown to Forever Begins</h3>
   <div id="timer" class="timer" role="timer" aria-live="off">
     <div class="tbox"><b id="cd-d">00</b><span>Days</span></div>
     <div class="tbox"><b id="cd-h">00</b><span>Hours</span></div>
@@ -103,11 +101,22 @@
     <div class="tbox"><b id="cd-s">00</b><span>Seconds</span></div>
   </div>
   <p id="cd-done" class="script done-msg" hidden>Today, we begin forever. Thank you for being here!</p>
+  </div>
 </section>
 
 <section id="functions" class="panel">
   <h2 class="center">Wedding Functions</h2>
   <div id="eventList" class="events"></div>
+</section>
+
+<section id="venue" class="panel center">
+  <h2>Venue &amp; Directions</h2>
+  <div id="venueList" class="venues"></div>
+</section>
+
+<section id="dresscode" class="panel center">
+  <h2>The Wardrobe · Dress Code</h2>
+  <div id="wardrobeList"></div>
 </section>
 
 <section id="message" class="panel center">
@@ -117,7 +126,6 @@
     <div class="under"><p class="msg">Your presence will make our special day even more beautiful. We can’t wait to celebrate this new chapter of our lives with you!</p></div>
     <canvas class="cover" data-style="sage" aria-label="Scratch area. Drag to reveal our message."></canvas>
   </div>
-  <button class="ghost reset" type="button" data-reset hidden>Scratch again</button>
 </section>
 
 <section id="family" class="panel center">
@@ -127,11 +135,6 @@
   <p class="muted reveal">A celebration of love, family &amp; togetherness.</p>
   <div class="fam reveal"><h3 class="long">We humbly seek your gracious presence and heartfelt blessings.</h3><h3>With warmth &amp; affection</h3><ul id="seekList"></ul></div>
   <div class="fam reveal"><ul id="warmList"></ul></div>
-</section>
-
-<section id="venue" class="panel">
-  <h2 class="center">Venue &amp; Directions</h2>
-  <div id="venueList" class="venues"></div>
 </section>
 
 <footer class="foot"><img src="logo.jpeg" alt=""><span class="script" data-couple></span><br>27 &amp; 28 February 2027</footer>

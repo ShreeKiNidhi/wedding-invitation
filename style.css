@@ -238,3 +238,10 @@ main{visibility:hidden;padding-top:calc(var(--safe-t) + 4.4rem)}body:not(.locked
 .rail.one{grid-template-columns:1fr;max-width:86%;margin:0 auto}
 .hg{display:flex;flex-direction:column}.hg-card{flex:1;align-content:start}
 .hg-t+.hg-t{margin-top:-.05rem}
+
+/* Countdown now lives inside the "Scratch to Reveal" section */
+.cd-wrap{margin-top:2rem;padding-top:1.6rem;border-top:1px dashed var(--gold)}
+.cd-title{font:600 clamp(1.05rem,3.6vw,1.5rem) var(--display);letter-spacing:.08em;color:var(--maroon)}
+.cd-wrap[hidden]{display:none}
+.cd-wrap.cd-in{animation:cdIn 1.1s cubic-bezier(.2,.8,.2,1)}
+#dresscode .wd{max-width:560px;margin:1.2rem auto .4rem}
