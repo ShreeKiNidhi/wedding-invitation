@@ -163,18 +163,19 @@ const CONFIG = {
   });
 
   /* Function cards (poster image + details) and venue */
+  // "Saturday, 27 February 2027" -> "27 Feb 2027 (Saturday)"
+  const dayLabel = d => { const [wd, rest] = CONFIG.events.find(e => e.day === d).date.split(", "); return `Day ${d} · ${rest.replace(/ ([A-Za-z]{3})[a-z]*/, " $1")} (${wd})`; };
   const evBox = $("#eventList"), vBox = $("#venueList"); let day = 0;
   CONFIG.events.forEach(ev => {
-    if (ev.day !== day) { day = ev.day; evBox.insertAdjacentHTML("beforeend", `<h3 class="day reveal">Day ${day} · ${ev.date.split(",")[0]}</h3>`); }
+    if (ev.day !== day) { day = ev.day; evBox.insertAdjacentHTML("beforeend", `<h3 class="day reveal">${dayLabel(day)}</h3>`); }
     evBox.insertAdjacentHTML("beforeend", `<article class="ev ${ev.cls} reveal"><span class="ic"><img src="${ev.img}" alt="${ev.name} invitation illustration" loading="lazy"></span>
       <div class="cap"><p class="tg">${ev.tag}</p><p class="when"><b>${ev.date}</b><br>${ev.time}</p></div></article>`);
   });
   const url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.address);
   const HANGER = '<svg class="hk" viewBox="0 -1 60 33" aria-hidden="true"><path d="M30 16V12C30 8 36 8 36 5A5 5 0 0 0 26 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M30 16 3 29Q1 31 4 31H56Q59 31 57 29Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>';
   const days = [...new Set(CONFIG.wardrobe.map(e => e.day))];
-  const dayName = d => CONFIG.events.find(e => e.day === d).date.split(",")[0];
   const shelves = days.map(d => { const es = CONFIG.wardrobe.filter(e => e.day === d);
-    return `<div class="shelf reveal"><span class="shelf-day">Day ${d} · ${dayName(d)}</span><div class="rail${es.length === 1 ? " one" : ""}">${es.map(ev => `<div class="hg">${HANGER}<div class="hg-card"><b>${ev.name}</b><p class="hg-d">${ev.dress}</p></div></div>`).join("")}</div></div>`; }).join("");
+    return `<div class="shelf reveal"><span class="shelf-day">${dayLabel(d)}</span><div class="rail${es.length === 1 ? " one" : ""}">${es.map(ev => `<div class="hg">${HANGER}<div class="hg-card"><b>${ev.name}</b><p class="hg-d">${ev.dress}</p></div></div>`).join("")}</div></div>`; }).join("");
   vBox.innerHTML = `<article class="v"><h3>${CONFIG.venue}</h3><p>Panvel, Navi Mumbai</p>
     <a class="dir" href="${url}" target="_blank" rel="noopener">Get Directions</a></article>`;
   $("#wardrobeList").innerHTML = `<div class="wd">${shelves}</div>`;
